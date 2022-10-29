@@ -10,7 +10,7 @@ import java.time.ZonedDateTime;
 import java.util.List;
 
 @AllArgsConstructor
-public class SendScheduledNotifications implements UseCase<SendScheduledNotificationsInput, SendScheduledNotificationsOutput> {
+public class SendScheduledNotificationsUseCase implements UseCase<SendScheduledNotificationsInput, SendScheduledNotificationsOutput> {
 
     private final ScheduledNotificationFinderPort scheduledNotificationFinder;
     private final TimeManagerPort timeManager;

@@ -9,3 +9,10 @@ spring:
 app:
   notifications:
     queue: notifications-queue
+    scheduler:
+      cron: "*/10 * * * * *"
+      max-notifications-per-iteration: 100
+  user-settings:
+    feign-client:
+      name: user-settings-feign-client
+      url: "http://localhost:8080"
