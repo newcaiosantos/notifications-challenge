@@ -7,8 +7,7 @@ import notifications.manager.business.entity.Notification;
 import notifications.manager.business.entity.NotificationStatus;
 import notifications.manager.business.entity.NotificationType;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.Instant;
 
 import static java.time.ZoneOffset.UTC;
@@ -19,14 +18,20 @@ import static java.util.Optional.ofNullable;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name="scheduled_notification")
 public class ScheduledNotificationEntity {
     @Id
     private String id;
     private String userId;
     private String message;
+
+    @Enumerated(EnumType.STRING)
     private NotificationType type;
     private Instant sendAt;
+
+    @Enumerated(EnumType.STRING)
     private NotificationStatus status;
+
     private Instant createdAt;
 
     public static ScheduledNotificationEntity from(final Notification n) {

@@ -26,7 +26,7 @@ public class NotificationController {
         return new ResponseEntity<>(sendNotificationUseCase.run(input), HttpStatus.CREATED);
     }
 
-    @PostMapping
+    @PostMapping("/scheduled")
     ResponseEntity<Notification> scheduleNotification(@RequestBody final ScheduleNotificationInput input) {
         return new ResponseEntity<>(scheduleNotificationUseCase.run(input), HttpStatus.CREATED);
     }

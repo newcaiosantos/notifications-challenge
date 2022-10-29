@@ -5,6 +5,15 @@ spring:
   rabbitmq:
     username: admin
     password: admin
+  datasource:
+    url: jdbc:mysql://localhost/notification_manager?allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true&autoReconnect=true&useSSL=false
+    username: root
+    password: root
+    platform: mysql
+    initialization-mode: always
+  jpa:
+    hibernate:
+      ddl-auto: update
 
 app:
   notifications:

@@ -2,6 +2,7 @@ package notifications.manager.serialization;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -11,6 +12,7 @@ public class DataMapper {
 
     public DataMapper() {
         objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
     }
 
     public <T> T deserialize(String text, Class<T> valueType) {

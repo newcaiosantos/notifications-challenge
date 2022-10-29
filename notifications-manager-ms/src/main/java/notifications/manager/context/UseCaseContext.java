@@ -41,14 +41,16 @@ public class UseCaseContext {
             final TimeManagerAdapter timeManagerAdapter,
             final NotificationPublisherAdapter notificationPublisherAdapter,
             final ScheduledNotificationsSaverAdapter scheduledNotificationsSaverAdapter,
-            final UserSettingsFinderAdapter userSettingsFinderAdapter
+            final UserSettingsFinderAdapter userSettingsFinderAdapter,
+            final TransactionalRunnerAdapter transactionalRunnerAdapter
     ) {
         return new SendScheduledNotificationsUseCase(
                 scheduledNotificationFinderAdapter,
                 timeManagerAdapter,
                 notificationPublisherAdapter,
                 scheduledNotificationsSaverAdapter,
-                userSettingsFinderAdapter
+                userSettingsFinderAdapter,
+                transactionalRunnerAdapter
         );
     }
 }
