@@ -2,6 +2,7 @@ package notifications.usersettings.data.document;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import nl.martijndwars.webpush.Subscription;
 import notifications.usersettings.business.entity.UserSettings;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -15,7 +16,7 @@ public class UserSettingsDocument {
     @Id
     private final String userId;
     private final Boolean optInNotifications;
-    private final String webNotificationsSubscription;
+    private final Subscription webNotificationsSubscription;
 
     public static UserSettingsDocument from(final UserSettings userSettings) {
         if (isNull(userSettings)) return null;

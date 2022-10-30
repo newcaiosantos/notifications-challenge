@@ -2,10 +2,11 @@ package notifications.usersettings.business.usecase.setwebnotificationssubscript
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import nl.martijndwars.webpush.Subscription;
 
 @AllArgsConstructor
 @Getter
 public class SetWebNotificationsSubscriptionInput {
     private final String userId;
-    private final String webNotificationsSubscription;
+    private final Subscription webNotificationsSubscription;
 }

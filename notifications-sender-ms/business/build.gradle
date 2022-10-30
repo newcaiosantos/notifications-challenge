@@ -19,8 +19,6 @@ repositories {
 dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.24'
     annotationProcessor 'org.projectlombok:lombok:1.18.24'
-    implementation 'nl.martijndwars:web-push:5.1.1'
-
 
     // Use JUnit Jupiter for testing.
     testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
@@ -31,7 +29,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass = 'notifications.usersettings.App'
+    mainClass = 'notifications.sender.App'
 }
 
 tasks.named('test') {

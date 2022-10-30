@@ -4,10 +4,11 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import nl.martijndwars.webpush.Subscription;
 
 @AllArgsConstructor
 @Getter
 @NoArgsConstructor(force = true, access = AccessLevel.PRIVATE)
 public class SetWebNotificationsPayload {
-    private final String webNotificationsSubscription;
+    private final Subscription webNotificationsSubscription;
 }

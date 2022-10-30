@@ -1,0 +1,18 @@
+server:
+  port: 8082
+
+spring:
+  rabbitmq:
+    username: admin
+    password: admin
+
+app:
+  notifications:
+    queue: notifications-queue
+    web:
+      public-key: BNjRsM0efoV-3XeGXZOikopJJlfHscMg-WLw9r2i2t5cnDPkxm_3gM1_ufhdCkBU3KDTbtL7ao4Wh4jKdQ2B8iA
+      private-key: 8uI4DVnQ69K_rq-RNUcwGeGLJ1Su2pb8GgupmSo6EJE
+  user-settings:
+    feign-client:
+      name: user-settings-feign-client
+      url: "http://localhost:8080"
