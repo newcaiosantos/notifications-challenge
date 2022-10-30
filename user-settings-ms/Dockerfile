@@ -1,6 +1,4 @@
-# Multi-Stage Build
-# (Não adotado por levar muito tempo no build em Mac M1 com platform linux/amd64)
-#
+# Multi-Stage Build (não adotado por excesso de tempo em Mac M1 (platform: linux/amd64))
 # FROM gradle:7.5.1-jdk17-alpine AS build
 # COPY --chown=gradle:gradle . /home/gradle/src
 # WORKDIR /home/gradle/src

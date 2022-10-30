@@ -5,8 +5,9 @@ spring:
   rabbitmq:
     username: admin
     password: admin
+    host: ${RABBITMQ_HOST:localhost}
   datasource:
-    url: jdbc:mysql://localhost/notification_manager?allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true&autoReconnect=true&useSSL=false
+    url: ${MYSQL_URL:jdbc:mysql://localhost/notification_manager?allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true&autoReconnect=true&useSSL=false}
     username: root
     password: root
     platform: mysql
@@ -24,4 +25,4 @@ app:
   user-settings:
     feign-client:
       name: user-settings-feign-client
-      url: "http://localhost:8080"
+      url: ${USER_SETTINGS_URL:http://localhost:8080}

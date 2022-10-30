@@ -21,6 +21,9 @@ services:
     environment:
       - RABBITMQ_DEFAULT_USER=admin
       - RABBITMQ_DEFAULT_PASS=admin
+    networks:
+     - broker-network
+
 
   mysql:
     image: mysql:8.0.31
@@ -32,6 +35,8 @@ services:
       - '3306:3306'
     expose:
       - '3306'
+    networks:
+     - notifications-manager-network
 
 
   user-settings-ms:
@@ -45,7 +50,30 @@ services:
       - "mongodb"
     networks:
      - user-settings-network
+     - ms-network
+
+
+  notifications-manager-ms:
+    build: notifications-manager-ms
+    platform: linux/amd64
+    ports:
+      - '8081:8081'
+    environment:
+      MYSQL_URL: 'jdbc:mysql://mysql/notification_manager?allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true&autoReconnect=true&useSSL=false'
+      RABBITMQ_HOST: 'rabbitmq'
+      USER_SETTINGS_URL: 'http://user-settings-ms:8080'
+    depends_on:
+      - "mysql"
+      - "rabbitmq"
+      - "user-settings-ms"
+    networks:
+     - notifications-manager-network
+     - broker-network
+     - ms-network
 
 
 networks:
   user-settings-network:
+  notifications-manager-network:
+  broker-network:
+  ms-network:
