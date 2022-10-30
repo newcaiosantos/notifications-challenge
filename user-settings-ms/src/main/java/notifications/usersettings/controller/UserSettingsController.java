@@ -2,6 +2,7 @@ package notifications.usersettings.controller;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import nl.martijndwars.webpush.Subscription;
 import notifications.usersettings.business.entity.UserSettings;
 import notifications.usersettings.business.usecase.getusersettings.GetUserSettingsInput;
 import notifications.usersettings.business.usecase.getusersettings.GetUserSettingsUseCase;
@@ -11,7 +12,6 @@ import notifications.usersettings.business.usecase.optoutnotifications.OptOutNot
 import notifications.usersettings.business.usecase.optoutnotifications.OptOutNotificationsUseCase;
 import notifications.usersettings.business.usecase.setwebnotificationssubscription.SetWebNotificationsSubscriptionInput;
 import notifications.usersettings.business.usecase.setwebnotificationssubscription.SetWebNotificationsSubscriptionUseCase;
-import notifications.usersettings.controller.payload.SetWebNotificationsPayload;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -61,9 +61,9 @@ public class UserSettingsController {
     @PutMapping("/{userId}/notifications/web/subscription")
     void setWebNotificationsSubscription(
             @PathVariable(value = "userId") final String userId,
-            @RequestBody final SetWebNotificationsPayload payload
+            @RequestBody final Subscription subscription
     ) {
-        final var input = new SetWebNotificationsSubscriptionInput(userId, payload.getWebNotificationsSubscription());
+        final var input = new SetWebNotificationsSubscriptionInput(userId, subscription);
         log.info("setting web notifications subscription with input {}...", input);
         setWebNotificationsSubscriptionUseCase.run(input);
         log.info("web notifications subscription was set with input {}", input);

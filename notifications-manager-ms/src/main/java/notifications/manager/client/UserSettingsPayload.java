@@ -3,6 +3,7 @@ package notifications.manager.client;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import nl.martijndwars.webpush.Subscription;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -10,5 +11,5 @@ import lombok.NoArgsConstructor;
 public class UserSettingsPayload {
     private String userId;
     private Boolean optInNotifications;
-    private String webNotificationsSubscription;
+    private Subscription webNotificationsSubscription;
 }

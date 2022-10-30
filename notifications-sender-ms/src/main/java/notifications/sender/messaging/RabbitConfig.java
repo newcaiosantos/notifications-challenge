@@ -1,6 +1,7 @@
 package notifications.sender.messaging;
 
 import org.springframework.amqp.core.*;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,64 +10,42 @@ import org.springframework.context.annotation.Configuration;
 public class RabbitConfig {
 
     public static final String DLX_MESSAGES_EXCHANGE = "DLX.MESSAGES.EXCHANGE";
-    public static final String DLQ_MESSAGES_QUEUE = "notifications-dlq";
-    public static final String MESSAGES_QUEUE = "notifications-queue";
     public static final String MESSAGES_EXCHANGE = "MESSAGES.EXCHANGE";
     public static final String ROUTING_KEY_MESSAGES_QUEUE = "ROUTING_KEY_MESSAGES_QUEUE";
 
-
     @Bean
-    Queue messagesQueue() {
-        return QueueBuilder.durable(MESSAGES_QUEUE)
+    Queue notificationsQueue(@Value("${app.notifications.queue}") final String notificationsQueue) {
+        return QueueBuilder
+                .durable(notificationsQueue)
                 .withArgument("x-dead-letter-exchange", DLX_MESSAGES_EXCHANGE)
                 .build();
     }
 
     @Bean
-    DirectExchange messagesExchange() {
+    Binding notificationsQueueBinding(@Qualifier("notificationsQueue") final Queue notificationsQueue) {
+        return BindingBuilder
+                .bind(notificationsQueue)
+                .to(notificationsQueueExchange())
+                .with(ROUTING_KEY_MESSAGES_QUEUE);
+    }
+
+    @Bean
+    DirectExchange notificationsQueueExchange() {
         return new DirectExchange(MESSAGES_EXCHANGE);
     }
 
     @Bean
-    Binding bindingMessages() {
-        return BindingBuilder.bind(messagesQueue()).to(messagesExchange()).with(ROUTING_KEY_MESSAGES_QUEUE);
+    Queue notificationsDlq(@Value("${app.notifications.dlq}") final String notificationsDlq) {
+        return QueueBuilder.durable(notificationsDlq).build();
     }
 
     @Bean
-    FanoutExchange deadLetterExchange() {
+    Binding notificationsDlqBinding(@Qualifier("notificationsDlq") final Queue notificationsDlq) {
+        return BindingBuilder.bind(notificationsDlq).to(notificationsDlqExchange());
+    }
+
+    @Bean
+    FanoutExchange notificationsDlqExchange() {
         return new FanoutExchange(DLX_MESSAGES_EXCHANGE);
     }
-
-    @Bean
-    Queue deadLetterQueue() {
-        return QueueBuilder.durable(DLQ_MESSAGES_QUEUE).build();
-    }
-
-    @Bean
-    Binding deadLetterBinding() {
-        return BindingBuilder.bind(deadLetterQueue()).to(deadLetterExchange());
-    }
-
-
-
-//    @Bean
-//    Queue notificationsQueue(
-//            @Value("${app.notifications.queue}") final String queueName,
-//            @Value("${app.notifications.dlq}") final String dlqName
-//    ) {
-//        return QueueBuilder
-//                .nonDurable(queueName)
-//                .deadLetterExchange("")
-//                .deadLetterRoutingKey(dlqName)
-//                .build();
-//    }
-//
-//    @Bean
-//    Queue notificationsDlq(
-//            @Value("${app.notifications.dlq}") final String dlqName
-//    ) {
-//        return QueueBuilder
-//                .nonDurable(dlqName)
-//                .build();
-//    }
 }
