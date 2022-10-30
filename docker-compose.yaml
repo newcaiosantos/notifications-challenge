@@ -4,6 +4,7 @@ services:
 
   mongodb:
     image: mongo:5.0
+    restart: always
     ports:
       - 27017:27017
     environment:
@@ -15,6 +16,7 @@ services:
 
   rabbitmq:
     image: rabbitmq:3-management
+    restart: always
     ports:
       - 5672:5672
       - 15672:15672
@@ -41,6 +43,7 @@ services:
 
   user-settings-ms:
     build: user-settings-ms
+    restart: always
     platform: linux/amd64
     environment:
       MONGODB_HOST: 'mongodb'
@@ -55,6 +58,7 @@ services:
 
   notifications-manager-ms:
     build: notifications-manager-ms
+    restart: always
     platform: linux/amd64
     ports:
       - '8081:8081'
@@ -74,6 +78,7 @@ services:
 
   notifications-sender-ms:
     build: notifications-sender-ms
+    restart: always
     platform: linux/amd64
     ports:
       - '8082:8082'
@@ -86,6 +91,13 @@ services:
     networks:
      - ms-network 
      - broker-network
+
+
+  front-end:
+    build: front-end
+    restart: always
+    ports:
+      - '8083:8083' 
 
 
 networks:
