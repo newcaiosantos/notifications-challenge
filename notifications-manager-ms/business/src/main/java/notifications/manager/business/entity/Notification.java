@@ -1,14 +1,13 @@
 package notifications.manager.business.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.With;
+import lombok.*;
 
 import java.time.ZonedDateTime;
 
 @AllArgsConstructor
 @Getter
 @With
+@NoArgsConstructor(force = true, access = AccessLevel.PRIVATE)
 public class Notification {
     private final String id;
     private final String userId;

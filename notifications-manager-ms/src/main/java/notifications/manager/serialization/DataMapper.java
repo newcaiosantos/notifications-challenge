@@ -15,14 +15,6 @@ public class DataMapper {
         objectMapper.registerModule(new JavaTimeModule());
     }
 
-    public <T> T deserialize(String text, Class<T> valueType) {
-        try {
-            return objectMapper.readValue(text, valueType);
-        } catch (final JsonProcessingException e) {
-            throw new RuntimeException(e.getMessage(), e.getCause());
-        }
-    }
-
     public String serialize(final Object value) {
         try {
             return objectMapper.writeValueAsString(value);

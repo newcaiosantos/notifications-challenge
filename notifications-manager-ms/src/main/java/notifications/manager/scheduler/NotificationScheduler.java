@@ -24,7 +24,7 @@ public class NotificationScheduler {
     }
 
     @Scheduled(cron = "${app.notifications.scheduler.cron}")
-    void sendScheduledNotifications() {
+    public void sendScheduledNotifications() {
         final var input = new SendScheduledNotificationsInput(maxNotifications);
         log.info("sending scheduled notifications with input {}...", input);
         final SendScheduledNotificationsOutput output = sendScheduledNotificationsUseCase.run(input);
