@@ -1,9 +1,6 @@
 package notifications.sender.business.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.ToString;
-import lombok.With;
+import lombok.*;
 
 import java.time.ZonedDateTime;
 
@@ -11,6 +8,7 @@ import java.time.ZonedDateTime;
 @Getter
 @With
 @ToString
+@NoArgsConstructor(force = true, access = AccessLevel.PRIVATE)
 public class Notification {
     private final String id;
     private final String userId;
