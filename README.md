@@ -11,3 +11,8 @@
 
 ## Tecnologias
 Java, Testcontainers, RabbitMQ (Queue/DLQ), MongoDB, MySQL(Transaction/Lock), MockServer, SpringBoot
+
+## Para subir localmente
+- Requisitos: Docker deve estar rodando (utiliza Testcontainers)
+- 1) Build de .jar's e imagens: ./build-jars-and-images.sh
+- 2) docker-compose up
