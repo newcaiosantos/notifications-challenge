@@ -10,4 +10,4 @@
 - MySQL: root@127.0.0.1:3306 (password:root)
 
 ## Tecnologias
-Java, Testcontainers, RabbitMQ, MongoDB, MySQL, MockServer
+Java, Testcontainers, RabbitMQ (Queue/DLQ), MongoDB, MySQL(Transaction/Lock), MockServer, SpringBoot

@@ -1,8 +1,8 @@
 package notifications.sender.serialization;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -15,19 +15,13 @@ public class DataMapper {
         objectMapper.registerModule(new JavaTimeModule());
     }
 
+    @SneakyThrows
     public <T> T deserialize(String text, Class<T> valueType) {
-        try {
-            return objectMapper.readValue(text, valueType);
-        } catch (final JsonProcessingException e) {
-            throw new RuntimeException(e.getMessage(), e.getCause());
-        }
+        return objectMapper.readValue(text, valueType);
     }
 
+    @SneakyThrows
     public String serialize(final Object value) {
-        try {
-            return objectMapper.writeValueAsString(value);
-        } catch (final JsonProcessingException e) {
-            throw new RuntimeException(e.getMessage(), e.getCause());
-        }
+        return objectMapper.writeValueAsString(value);
     }
 }

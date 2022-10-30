@@ -16,7 +16,7 @@ public class SendNotificationListener {
     private final DataMapper dataMapper;
 
     @RabbitListener(queues = "${app.notifications.queue}")
-    void sendNotification(final String message) {
+    public void sendNotification(final String message) {
         log.info("sending notification: {}", message);
         final Notification notification = dataMapper.deserialize(message, Notification.class);
         sendNotificationUseCase.run(notification);
