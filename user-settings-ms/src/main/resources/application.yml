@@ -1,3 +1,11 @@
 spring:
   jackson:
     default-property-inclusion: non_null
+  data:
+    mongodb:
+      host: ${MONGODB_HOST:localhost}
+      port: 27017
+      username: root
+      password: root
+      database: userSettings
+      authentication-database: admin
