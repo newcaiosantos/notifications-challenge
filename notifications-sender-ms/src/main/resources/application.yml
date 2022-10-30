@@ -3,6 +3,7 @@ server:
 
 spring:
   rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
     username: admin
     password: admin
     listener:
@@ -18,4 +19,4 @@ app:
   user-settings:
     feign-client:
       name: user-settings-feign-client
-      url: "http://localhost:8080"
+      url: ${USER_SETTINGS_URL:http://localhost:8080}

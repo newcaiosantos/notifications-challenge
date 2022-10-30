@@ -49,8 +49,8 @@ services:
     depends_on:
       - "mongodb"
     networks:
-     - user-settings-network
      - ms-network
+     - user-settings-network
 
 
   notifications-manager-ms:
@@ -70,6 +70,22 @@ services:
      - notifications-manager-network
      - broker-network
      - ms-network
+
+
+  notifications-sender-ms:
+    build: notifications-sender-ms
+    platform: linux/amd64
+    ports:
+      - '8082:8082'
+    environment:
+      RABBITMQ_HOST: 'rabbitmq'
+      USER_SETTINGS_URL: 'http://user-settings-ms:8080'
+    depends_on:
+      - "rabbitmq"
+      - "user-settings-ms"
+    networks:
+     - ms-network 
+     - broker-network
 
 
 networks:
