@@ -8,3 +8,6 @@
 - RabbitMQ: http://localhost:15672/
 - MongoDB: mongodb://root:root@localhost:27017/?authMechanism=DEFAULT
 - MySQL: root@127.0.0.1:3306 (password:root)
+
+## Tecnologias
+Java, Testcontainers

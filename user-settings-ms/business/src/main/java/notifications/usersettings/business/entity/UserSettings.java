@@ -1,14 +1,13 @@
 package notifications.usersettings.business.entity;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.With;
+import lombok.*;
 import nl.martijndwars.webpush.Subscription;
 
 @AllArgsConstructor
 @Getter
 @With
+@NoArgsConstructor(force = true, access = AccessLevel.PRIVATE)
 public class UserSettings {
     private final String userId;
     private final Boolean optInNotifications;
