@@ -41,6 +41,7 @@
   - RabbitMQ: http://localhost:15672/ (interface gráfica)
   - MongoDB: mongodb://root:root@localhost:27017/?authMechanism=DEFAULT
   - MySQL: root@127.0.0.1:3306 (password:root)
+- Escrevi testes que cobrem em média 90% do código das aplicações
 - Tecnologias utilizadas
   - Java/Spring
   - Testcontainers
