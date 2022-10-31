@@ -34,7 +34,7 @@
 - Caso autenticação fosse um requisito do desafio, eu adotaria, por exemplo, JWT e Spring Security e extrairia as informações do usuário a partir do payload do token;
 - O trecho do desenho que cita User e Internal Applications somente abstrai aplicações internas e interações do usuário que podem estimular as notificações e não representam necessariamente um único microserviço sendo acessado por um usuário;
 - Há uma collection Insomnia "insomnia-collection.json" que pode ser importada para interações com os serviços;
-- Com os serviços rodando, ha documentação Swagger nos endpoints:
+- Com os serviços rodando, há documentação Swagger nos endpoints:
   - Serviço User Settings: http://localhost:8080/swagger-ui/index.html
   - Serviço Notification Manager: http://localhost:8081/swagger-ui/index.html
 - Para acesso direto às tecnologias que dão suporte aos serviços, estes são os acessos:
